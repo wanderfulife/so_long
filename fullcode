@@ -1,0 +1,774 @@
+/* asset/collectible.xpm */
+/* XPM */
+static char *collectible[] = {
+"32 32 3 1 ",
+"  c None",
+". c #FFD700",
+"X c #FFA500",
+"        ............        ",
+"      ..XXXXXXXXXXXX..      ",
+"     .XXXXXXXXXXXXXX.     ",
+"    .XXXXXXXXXXXXXXXX.    ",
+"   .XXXXXXXXXXXXXXXXXX.   ",
+"  .XXXXXXXXXXXXXXXXXXXX.  ",
+" .XXXXXXXXXXXXXXXXXXXXXX. ",
+".XXXXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXXXX.",
+" .XXXXXXXXXXXXXXXXXXXXXX. ",
+"  .XXXXXXXXXXXXXXXXXXXX.  ",
+"   .XXXXXXXXXXXXXXXXXX.   ",
+"    .XXXXXXXXXXXXXXXX.    ",
+"     .XXXXXXXXXXXXXX.     ",
+"      ..XXXXXXXXXX..      "
+};
+
+/* asset/exit.xpm */
+/* XPM */
+static char *exit[] = {
+"32 32 3 1 ",
+"  c None",
+". c #000000",
+"X c #00FF00",
+"        ........        ",
+"      ..XXXXXXXX..      ",
+"     .XXXXXXXXXXXX.     ",
+"    .XXXXXXXXXXXXXX.    ",
+"   .XXXXXXXXXXXXXXXX.   ",
+"  .XXXXXXXXXXXXXXXXXX.  ",
+" .XXXXXXXXXXXXXXXXXXXX. ",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+" .XXXXXXXXXXXXXXXXXXXX. ",
+"  .XXXXXXXXXXXXXXXXXX.  ",
+"   .XXXXXXXXXXXXXXXX.   ",
+"    .XXXXXXXXXXXXXX.    ",
+"     .XXXXXXXXXXXX.     ",
+"      ..XXXXXXXX..      "
+};
+
+/* asset/floor.xpm */
+/* XPM */
+static char *floor[] = {
+"32 32 2 1 ",
+"  c #C0C0C0",
+". c #A0A0A0",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................",
+"................................"
+};
+
+/* asset/player.xpm */
+/* XPM */
+static char *player[] = {
+"32 32 3 1 ",
+"  c None",
+". c #000000",
+"X c #FF0000",
+"        ........        ",
+"      ..XXXXXXXX..      ",
+"     .XXXXXXXXXXXX.     ",
+"    .XXXXXXXXXXXXXX.    ",
+"   .XXXXXXXXXXXXXXXX.   ",
+"  .XXXXXXXXXXXXXXXXXX.  ",
+" .XXXXXXXXXXXXXXXXXXXX. ",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+".XXXXXXXXXXXXXXXXXXXXXX.",
+" .XXXXXXXXXXXXXXXXXXXX. ",
+"  .XXXXXXXXXXXXXXXXXX.  ",
+"   .XXXXXXXXXXXXXXXX.   ",
+"    .XXXXXXXXXXXXXX.    ",
+"     .XXXXXXXXXXXX.     ",
+"      ..XXXXXXXX..      "
+};
+
+/* asset/wall.xpm */
+/* XPM */
+static char *wall[] = {
+"32 32 2 1 ",
+"  c #000000",
+". c #FFFFFF",
+"................................",
+".                              .",
+". ............................ .",
+". .                          . .",
+". . ........................ . .",
+". . .                      . . .",
+". . . .................... . . .",
+". . . .                  . . . .",
+". . . . ................ . . . .",
+". . . . .              . . . . .",
+". . . . . .............. . . . .",
+". . . . . .            . . . . .",
+". . . . . . .......... . . . . .",
+". . . . . . .        . . . . . .",
+". . . . . . . ...... . . . . . .",
+". . . . . . . .    . . . . . . .",
+". . . . . . . . .. . . . . . . .",
+". . . . . . . .  . . . . . . . .",
+". . . . . . . .. . . . . . . . .",
+". . . . . . .    . . . . . . . .",
+". . . . . . ...... . . . . . . .",
+". . . . . .        . . . . . . .",
+". . . . . .......... . . . . . .",
+". . . . .            . . . . . .",
+". . . . .............. . . . . .",
+". . . .              . . . . . .",
+". . . .................... . . .",
+". . .                      . . .",
+". . ........................ . .",
+". .                          . .",
+". ............................ .",
+"................................"
+};
+
+// game_init/initialize_game.c
+#include "../includes/so_long.h"
+#include <stdio.h>
+
+int	initialize_game(t_data *data, char *map_file)
+{
+	data->map.map_array = parse_map(map_file, &data->map);
+	if (!data->map.map_array)
+	{
+		printf("Error: Invalid map\n");
+		return (0);
+	}
+	data->player.collected = 0;
+	data->player.moves = 0;
+	if (!find_player(data))
+	{
+		printf("Error: Player starting position not found\n");
+		return (0);
+	}
+	return (1);
+}
+
+// game_init/player_setup.c
+#include "../includes/so_long.h"
+
+int	find_player(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < data->map.rows)
+	{
+		j = 0;
+		while (j < data->map.cols)
+		{
+			if (data->map.map_array[i][j] == 'P')
+			{
+				data->player.x = j;
+				data->player.y = i;
+				return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+// game_init/setup_window.c
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   setup_window.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Jowander <Jowander@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/07 12:21:31 by Jowander          #+#    #+#             */
+/*   Updated: 2024/09/07 12:21:51 by Jowander         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/so_long.h"
+
+int	setup_window(t_data *data)
+{
+	data->mlx = mlx_init();
+	if (!data->mlx)
+	{
+		ft_printf("Error: Failed to initialize MLX\n");
+		return (0);
+	}
+	data->win = mlx_new_window(data->mlx, data->map.cols * TILE_SIZE,
+			data->map.rows * TILE_SIZE, "So Long");
+	if (!data->win)
+	{
+		ft_printf("Error: Failed to create window\n");
+		return (0);
+	}
+	return (1);
+}
+
+void	setup_hooks(t_data *data)
+{
+	mlx_hook(data->win, 2, 1L << 0, key_press, data);
+	mlx_hook(data->win, 17, 1L << 17, close_window, data);
+	mlx_loop_hook(data->mlx, game_loop, data);
+}
+
+void	load_images(t_data *data)
+{
+	int	width;
+	int	height;
+
+	data->wall_img = mlx_xpm_file_to_image(data->mlx, "assets/wall.xpm", &width,
+			&height);
+	data->floor_img = mlx_xpm_file_to_image(data->mlx, "assets/floor.xpm",
+			&width, &height);
+	data->player_img = mlx_xpm_file_to_image(data->mlx, "assets/player.xpm",
+			&width, &height);
+	data->collectible_img = mlx_xpm_file_to_image(data->mlx,
+			"assets/collectible.xpm", &width, &height);
+	data->exit_img = mlx_xpm_file_to_image(data->mlx, "assets/exit.xpm", &width,
+			&height);
+}
+
+
+// includes/so_long.h
+#ifndef SO_LONG_H
+# define SO_LONG_H
+
+# include "../gnl/get_next_line.h"
+# include "../mlx/mlx.h"
+# include "../printf/includes/ft_printf.h"
+# include <stddef.h>
+# include <stdlib.h>
+
+# define MAX_ROWS 100
+# define MAX_COLS 100
+# define TILE_SIZE 32
+
+typedef struct s_map
+{
+	int			rows;
+	int			cols;
+	int			collectibles;
+	char		**map_array;
+}				t_map;
+
+typedef struct s_player
+{
+	int			x;
+	int			y;
+	int			collected;
+	int			moves;
+}				t_player;
+
+typedef struct s_data
+{
+	void		*mlx;
+	void		*win;
+	void		*img;
+	void		*wall_img;
+	void		*floor_img;
+	void		*player_img;
+	void		*collectible_img;
+	void		*exit_img;
+	t_map		map;
+	t_player	player;
+}				t_data;
+
+// Function prototypes
+char			**parse_map(char *filename, t_map *map);
+int				validate_map(char **map, t_map *map_info);
+int				validate_map_structure(char **map, t_map *map_info);
+int				render_map(t_data *data);
+int				move_player(t_data *data, int new_x, int new_y);
+int				handle_collectible(t_data *data, int new_x, int new_y);
+int				handle_exit(t_data *data);
+void			update_player_position(t_data *data, int new_x, int new_y);
+int				key_press(int keycode, t_data *data);
+char			*get_next_line(int fd);
+size_t			ft_strlen(const char *s);
+char			*ft_strdup(const char *s);
+void			*ft_memcpy(void *dst, const void *src, size_t n);
+int				close_window(t_data *data);
+
+// New function prototypes for game_init
+int				initialize_game(t_data *data, char *map_file);
+int				game_loop(t_data *data);
+int				setup_window(t_data *data);
+void			setup_hooks(t_data *data);
+int				find_player(t_data *data);
+void			load_images(t_data *data);
+
+#endif
+
+// maps/invalid/inv_map.ber
+1111111111
+1P0000000E
+1000000001
+1000C00001
+1111111110
+
+// maps/valid/complex.ber
+1111111111111111111111111111111111
+1E0000000000000C00000C000000000001
+1010010100100000101001000000010101
+1010010010101010001001000000010101
+1P0000000C00C0000000000000000000C1
+1010010010100010001001000000010101
+1010010010001010001001000000010101
+100000000000C0000000000000000000C1
+1010010010100010001001000000010101
+1010010010001010001001000000010101
+1000000000000000000000000000000001
+1010010010100010001001000000010101
+1010010010001010001001000C00010101
+1C00C00000000000000000000000000001
+1010010010100010001001000000010101
+1010010010001010001001000000010101
+100000000000000000000000000C000001
+1111111111111111111111111111111111
+
+// maps/valid/map1.ber
+1111111111111
+10010000000C1
+1000011111001
+1P0011E000001
+1111111111111
+
+// src/main.c
+#include "../includes/so_long.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+void	cleanup(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	if (data->map.map_array)
+	{
+		while (i < data->map.rows)
+			free(data->map.map_array[i++]);
+		free(data->map.map_array);
+	}
+	if (data->mlx && data->win)
+		mlx_destroy_window(data->mlx, data->win);
+	if (data->mlx)
+	{
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+	}
+}
+
+int	close_window(t_data *data)
+{
+	cleanup(data);
+	exit(0);
+	return (0);
+}
+
+int	game_loop(t_data *data)
+{
+	render_map(data);
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	t_data	data;
+
+	if (argc != 2)
+	{
+		ft_printf("Usage: %s <map_file.ber>\n", argv[0]);
+		return (1);
+	}
+	if (!initialize_game(&data, argv[1]))
+	{
+		cleanup(&data);
+		return (1);
+	}
+	if (!setup_window(&data))
+	{
+		cleanup(&data);
+		return (1);
+	}
+	load_images(&data);
+	setup_hooks(&data);
+	mlx_loop(data.mlx);
+	cleanup(&data);
+	return (0);
+}
+
+// src/map_parser.c
+#include "../gnl/get_next_line.h"
+#include "../includes/so_long.h"
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+static void	remove_newline(char *str)
+{
+	int	len;
+
+	len = ft_strlen(str);
+	if (len > 0 && str[len - 1] == '\n')
+		str[len - 1] = '\0';
+}
+
+static char	**read_map(int fd, t_map *map_info)
+{
+	char	**map;
+	char	*line;
+	int		row;
+
+	map = malloc(sizeof(char *) * (MAX_ROWS + 1));
+	if (!map)
+		return (NULL);
+	row = 0;
+	line = get_next_line(fd);
+	while (line && row < MAX_ROWS)
+	{
+		remove_newline(line);
+		map[row] = ft_strdup(line);
+		free(line);
+		if (row == 0)
+			map_info->cols = ft_strlen(map[row]);
+		row++;
+		line = get_next_line(fd);
+	}
+	map[row] = NULL;
+	map_info->rows = row;
+	return (map);
+}
+
+char	**parse_map(char *filename, t_map *map_info)
+{
+	char	**map;
+	int		fd;
+
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		return (NULL);
+	map = read_map(fd, map_info);
+	close(fd);
+	if (!map)
+		return (NULL);
+	if (!validate_map_structure(map, map_info) || !validate_map(map, map_info))
+	{
+		while (*map)
+			free(*map++);
+		free(map);
+		return (NULL);
+	}
+	return (map);
+}
+
+// src/map_validator.c
+#include "../includes/so_long.h"
+
+static void	count_map_chars(char **map, t_map *map_info, int counts[3])
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	counts[0] = 0;
+	counts[1] = 0;
+	counts[2] = 0;
+	while (++i < map_info->rows)
+	{
+		j = -1;
+		while (++j < map_info->cols)
+		{
+			if (map[i][j] == 'P')
+				counts[0]++;
+			else if (map[i][j] == 'E')
+				counts[1]++;
+			else if (map[i][j] == 'C')
+				counts[2]++;
+		}
+	}
+}
+
+int	validate_map(char **map, t_map *map_info)
+{
+	int	i;
+	int	j;
+	int	counts[3];
+
+	count_map_chars(map, map_info, counts);
+	i = -1;
+	while (++i < map_info->rows)
+	{
+		j = -1;
+		while (++j < map_info->cols)
+		{
+			if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != 'P'
+				&& map[i][j] != 'E' && map[i][j] != 'C')
+				return (0);
+		}
+	}
+	map_info->collectibles = counts[2];
+	return (counts[0] == 1 && counts[1] == 1 && counts[2] > 0);
+}
+
+int	validate_map_structure(char **map, t_map *map_info)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < map_info->rows)
+	{
+		if (ft_strlen(map[i]) != (size_t)map_info->cols || map[i][0] != '1'
+			|| map[i][map_info->cols - 1] != '1')
+			return (0);
+	}
+	j = -1;
+	while (++j < map_info->cols)
+	{
+		if (map[0][j] != '1' || map[map_info->rows - 1][j] != '1')
+			return (0);
+	}
+	return (1);
+}
+
+// src/player_movement.c
+#include "../includes/so_long.h"
+#include <stdio.h>
+
+int	handle_collectible(t_data *data, int new_x, int new_y)
+{
+	data->player.collected++;
+	data->map.map_array[new_y][new_x] = '0';
+	ft_printf("Collected item. Total: %d / %d\n", data->player.collected,
+		data->map.collectibles);
+	return (1);
+}
+
+int	handle_exit(t_data *data)
+{
+	if (data->player.collected == data->map.collectibles)
+	{
+		printf("Congratulations! You won! Collected: %d / %d\n",
+			data->player.collected, data->map.collectibles);
+		exit(0);
+	}
+	printf("Not all items collected yet. Collected: %d / %d\n",
+		data->player.collected, data->map.collectibles);
+	return (0);
+}
+
+int	move_player(t_data *data, int new_x, int new_y)
+{
+	char	new_pos;
+
+	new_pos = data->map.map_array[new_y][new_x];
+	ft_printf("Attempting to move to (%d, %d). Char at new position: %c\n",
+		new_x, new_y, new_pos);
+	ft_printf("Current collectibles: %d / %d\n", data->player.collected,
+		data->map.collectibles);
+	if (new_pos == '1')
+		return (0);
+	if (new_pos == 'C')
+		handle_collectible(data, new_x, new_y);
+	if (new_pos == 'E')
+		return (handle_exit(data));
+	update_player_position(data, new_x, new_y);
+	return (1);
+}
+
+void	update_player_position(t_data *data, int new_x, int new_y)
+{
+	data->map.map_array[data->player.y][data->player.x] = '0';
+	data->player.x = new_x;
+	data->player.y = new_y;
+	data->map.map_array[new_y][new_x] = 'P';
+	printf("Moves: %d\n", ++data->player.moves);
+}
+
+int	key_press(int keycode, t_data *data)
+{
+	int	moved;
+
+	moved = 0;
+	printf("Key pressed: %d\n", keycode);
+	if (keycode == 65307)
+		exit(0);
+	else if (keycode == 119 || keycode == 65362)
+		moved = move_player(data, data->player.x, data->player.y - 1);
+	else if (keycode == 115 || keycode == 65364)
+		moved = move_player(data, data->player.x, data->player.y + 1);
+	else if (keycode == 97 || keycode == 65361)
+		moved = move_player(data, data->player.x - 1, data->player.y);
+	else if (keycode == 100 || keycode == 65363)
+		moved = move_player(data, data->player.x + 1, data->player.y);
+	if (moved)
+		render_map(data);
+	return (0);
+}
+
+// src/render.c
+#include "../includes/so_long.h"
+
+void	draw_tile(t_data *data, int x, int y, void *img)
+{
+	mlx_put_image_to_window(data->mlx, data->win, img, x * TILE_SIZE, y
+		* TILE_SIZE);
+}
+
+void	draw_specific_tile(t_data *data, int x, int y, char tile_type)
+{
+	if (tile_type == '1')
+		draw_tile(data, x, y, data->wall_img);
+	else if (tile_type == '0')
+		draw_tile(data, x, y, data->floor_img);
+	else if (tile_type == 'C')
+		draw_tile(data, x, y, data->collectible_img);
+	else if (tile_type == 'E')
+		draw_tile(data, x, y, data->exit_img);
+	else if (tile_type == 'P')
+	{
+		draw_tile(data, x, y, data->player_img);
+		data->player.x = x;
+		data->player.y = y;
+	}
+}
+
+int	render_map(t_data *data)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < data->map.rows)
+	{
+		x = 0;
+		while (x < data->map.cols)
+		{
+			draw_specific_tile(data, x, y, data->map.map_array[y][x]);
+			x++;
+		}
+		y++;
+	}
+	return (0);
+}
+
+
+// src/utils.c
+#include "../includes/so_long.h"
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	char	*ptr;
+	size_t	len;
+
+	len = ft_strlen(s1) + 1;
+	ptr = malloc(len);
+	if (ptr == NULL)
+		return (NULL);
+	ft_memcpy(ptr, s1, len);
+	return (ptr);
+}
+
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	unsigned char		*d;
+	const unsigned char	*s;
+
+	d = (unsigned char *)dst;
+	s = (const unsigned char *)src;
+	if (!dst && !src)
+		return (dst);
+	while (n--)
+		*d++ = *s++;
+	return (dst);
+}
+
