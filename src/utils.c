@@ -6,7 +6,7 @@
 /*   By: Jowander <Jowander@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:06:35 by Jowander          #+#    #+#             */
-/*   Updated: 2024/09/07 13:24:19 by Jowander         ###   ########.fr       */
+/*   Updated: 2024/09/07 16:12:33 by Jowander         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,14 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	while (n--)
 		*d++ = *s++;
 	return (dst);
+}
+
+void	*ft_memset(void *s, int c, size_t len)
+{
+	unsigned char	*str;
+
+	str = (unsigned char *)s;
+	while (len--)
+		*str++ = (unsigned char)c;
+	return (s);
 }

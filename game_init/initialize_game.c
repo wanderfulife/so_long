@@ -5,27 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: Jowander <Jowander@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/07 12:20:52 by Jowander          #+#    #+#             */
-/*   Updated: 2024/09/07 12:21:02 by Jowander         ###   ########.fr       */
+/*   Created: 2024/09/02 12:20:52 by Jowander          #+#    #+#             */
+/*   Updated: 2024/09/07 17:18:52 by Jowander         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-#include <stdio.h>
 
 int	initialize_game(t_data *data, char *map_file)
 {
 	data->map.map_array = parse_map(map_file, &data->map);
 	if (!data->map.map_array)
 	{
-		printf("Error: Invalid map\n");
+		ft_printf("Error: Invalid map\n");
 		return (0);
 	}
-	data->player.collected = 0;
-	data->player.moves = 0;
-	if (!find_player(data))
+
+	if (!check_map_is_playable(&data->map))
 	{
-		printf("Error: Player starting position not found\n");
+		ft_printf("Error: Map is not playable\n");
 		return (0);
 	}
 	return (1);

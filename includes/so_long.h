@@ -6,7 +6,7 @@
 /*   By: Jowander <Jowander@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 14:05:30 by Jowander          #+#    #+#             */
-/*   Updated: 2024/09/07 13:24:32 by Jowander         ###   ########.fr       */
+/*   Updated: 2024/09/07 17:17:10 by Jowander         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 # include "../gnl/get_next_line.h"
 # include "../mlx/mlx.h"
 # include "../printf/includes/ft_printf.h"
+# include <fcntl.h>
 # include <stddef.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 # define MAX_ROWS 100
 # define MAX_COLS 100
@@ -67,7 +69,10 @@ char			*get_next_line(int fd);
 size_t			ft_strlen(const char *s);
 char			*ft_strdup(const char *s);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
+void			*ft_memset(void *s, int c, size_t len);
 int				close_window(t_data *data);
+void			cleanup(t_data *data);
+int				check_map_is_playable(t_map *map);
 
 // New function prototypes for game_init
 int				initialize_game(t_data *data, char *map_file);
@@ -75,6 +80,6 @@ int				game_loop(t_data *data);
 int				setup_window(t_data *data);
 void			setup_hooks(t_data *data);
 int				find_player(t_data *data);
-void			load_images(t_data *data);
+int				load_images(t_data *data);
 
 #endif

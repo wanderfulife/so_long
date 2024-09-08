@@ -8,8 +8,9 @@ MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib/X11 -lXext -lX11 -lm
 FT_PRINTF = printf/libftprintf.a
 
 SRCS = src/main.c src/map_parser.c src/render.c src/player_movement.c src/utils.c \
-       gnl/get_next_line.c gnl/get_next_line_utils.c src/map_validator.c\
-       game_init/initialize_game.c game_init/setup_window.c game_init/player_setup.c
+       gnl/get_next_line.c gnl/get_next_line_utils.c src/map_validator.c \
+       game_init/initialize_game.c game_init/setup_window.c game_init/player_setup.c \
+	   src/game_utils.c src/checker_map.c
 
 OBJS = $(SRCS:.c=.o)
 

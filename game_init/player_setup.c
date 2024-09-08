@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: Jowander <Jowander@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/07 12:22:12 by Jowander          #+#    #+#             */
-/*   Updated: 2024/09/07 14:03:55 by Jowander         ###   ########.fr       */
+/*   Created: 2024/09/02 12:22:12 by Jowander          #+#    #+#             */
+/*   Updated: 2024/09/07 17:18:59 by Jowander         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,18 @@
 
 int	find_player(t_data *data)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < data->map.rows)
+	for (int y = 0; y < data->map.rows; y++)
 	{
-		j = 0;
-		while (j < data->map.cols)
+		for (int x = 0; x < data->map.cols; x++)
 		{
-			if (data->map.map_array[i][j] == 'P')
+			if (data->map.map_array[y][x] == 'P')
 			{
-				data->player.x = j;
-				data->player.y = i;
+				data->player.x = x;
+				data->player.y = y;
 				return (1);
 			}
-			j++;
 		}
-		i++;
 	}
+	ft_printf("Error: Player not found in the map\n");
 	return (0);
 }
